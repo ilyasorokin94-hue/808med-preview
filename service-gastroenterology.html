@@ -57,7 +57,7 @@
         .faq__tabs { display: none !important; }
       </style>
     </noscript>
-    <script type="module" crossorigin src="./assets/index-BuYSGa3U.js"></script>
+    <script type="module" crossorigin src="./assets/index-CWJ85UlS.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CVQaz6M4.css">
     <!--page-transition:start-->
     <script type="speculationrules">{"prefetch":[{"source":"document","where":{"href_matches":"*service-*"},"eagerness":"moderate"}]}</script>
@@ -69,26 +69,50 @@
     const mark = raw && JSON.parse(raw);
     if (!mark || mark.page !== document.documentElement.dataset.page || Date.now() - mark.at > 8e3) return;
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const root = document.documentElement;
+    const hide = document.createElement("style");
+    hide.textContent = "html.service-landing .service-page__oval-inner img{opacity:0}@keyframes service-landing-rise{from{opacity:0;transform:translateY(10px)}}html.service-landing-text .service-page__intro>*{animation:service-landing-rise .56s cubic-bezier(.22,.8,.2,1) both}html.service-landing-text .service-page__intro>:nth-child(2){animation-delay:.06s}html.service-landing-text .service-page__intro>:nth-child(3){animation-delay:.12s}html.service-landing-text .service-page__intro>:nth-child(4){animation-delay:.18s}html.service-landing-text .service-page__intro>:nth-child(n+5){animation-delay:.24s}";
+    document.head.append(hide);
+    root.classList.add("service-landing", "service-landing-text");
     const oval = document.createElement("div");
     oval.setAttribute("aria-hidden", "true");
-    oval.style.cssText = `position:fixed;left:${mark.x}px;top:${mark.y}px;width:${mark.w}px;height:${mark.h}px;border-radius:${mark.radius};overflow:hidden;z-index:2147483000;pointer-events:none;background:#e9e3d8;box-shadow:0 24px 60px rgba(40,44,32,.18);will-change:transform,opacity`;
+    oval.style.cssText = `position:fixed;left:${mark.x}px;top:${mark.y}px;width:${mark.w}px;height:${mark.h}px;border-radius:${mark.radius};overflow:hidden;z-index:2147483000;pointer-events:none;background:#e9e3d8;box-shadow:0 18px 50px rgba(40,44,32,.16);will-change:left,top,width,height`;
     const image = document.createElement("img");
     image.alt = "";
     image.src = mark.src;
     image.style.cssText = "display:block;width:100%;height:100%;object-fit:cover";
     oval.append(image);
-    document.documentElement.append(oval);
-    const travel = Math.max(innerWidth * 0.62, 260) * mark.dir;
-    const run = () => {
-      const swipe = oval.animate([
-        { transform: "translate(0, 0) rotate(0deg) scale(1.04)", opacity: 1 },
-        { transform: `translate(${travel * 0.78}px, -14px) rotate(${7 * mark.dir}deg) scale(1.08)`, opacity: 1, offset: 0.72 },
-        { transform: `translate(${travel}px, -20px) rotate(${10 * mark.dir}deg) scale(.96)`, opacity: 0 }
-      ], { duration: 1050, easing: "cubic-bezier(.45, 0, .2, 1)", fill: "forwards" });
-      swipe.onfinish = () => oval.remove();
+    root.append(oval);
+    const finish = () => {
+      root.classList.remove("service-landing");
+      const fade = oval.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 220, easing: "ease-out", fill: "forwards" });
+      fade.onfinish = () => {
+        oval.remove();
+        root.classList.remove("service-landing-text");
+        hide.remove();
+      };
     };
-    Promise.race([image.decode ? image.decode() : Promise.resolve(), new Promise((done) => setTimeout(done, 120))]).catch(() => {
-    }).then(run);
+    const fly = (target) => {
+      const box = target.getBoundingClientRect();
+      if (!box.width || box.bottom < 0 || box.top > innerHeight) {
+        finish();
+        return;
+      }
+      const radius = getComputedStyle(target.parentElement).borderRadius || "50%";
+      const flight = oval.animate([
+        { left: `${mark.x}px`, top: `${mark.y}px`, width: `${mark.w}px`, height: `${mark.h}px`, borderRadius: mark.radius, boxShadow: "0 18px 50px rgba(40,44,32,.16)" },
+        { left: `${box.left}px`, top: `${box.top}px`, width: `${box.width}px`, height: `${box.height}px`, borderRadius: radius, boxShadow: "0 0 0 rgba(40,44,32,0)" }
+      ], { duration: 700, easing: "cubic-bezier(.6,0,.2,1)", fill: "forwards" });
+      flight.onfinish = finish;
+    };
+    let tries = 0;
+    const look = () => {
+      const target = document.querySelector(".service-page__oval-inner img");
+      if (target) fly(target);
+      else if (++tries < 90) requestAnimationFrame(look);
+      else finish();
+    };
+    requestAnimationFrame(look);
   } catch {
   }
 })();</script>
