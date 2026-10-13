@@ -57,10 +57,10 @@
         .faq__tabs { display: none !important; }
       </style>
     </noscript>
-    <script type="module" crossorigin src="./assets/index-BeiRzBgN.js"></script>
+    <script type="module" crossorigin src="./assets/index-CRDcZHYm.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-BCtOwAFT.css">
     <!--page-transition:start-->
-    <script type="speculationrules">{"prefetch":[{"source":"document","where":{"href_matches":"*service-*"},"eagerness":"moderate"}]}</script>
+    <script type="speculationrules">{"prefetch":[{"source":"document","where":{"or":[{"href_matches":"*service-*"},{"href_matches":"*doctor-*"}]},"eagerness":"moderate"}]}</script>
     <script>(function swipeOverlay() {
   try {
     const key = "808.service-swipe";
@@ -70,8 +70,12 @@
     if (!mark || mark.page !== document.documentElement.dataset.page || Date.now() - mark.at > 8e3) return;
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const root = document.documentElement;
+    const doctor = mark.page.indexOf("doctor-") === 0;
+    const photo = doctor ? ".doctor-page__portrait" : ".service-page__oval-inner img";
+    const intro = doctor ? ".doctor-page__intro" : ".service-page__intro";
     const hide = document.createElement("style");
-    hide.textContent = "html.service-landing .service-page__oval-inner img{opacity:0}@keyframes service-landing-rise{from{opacity:0;transform:translateY(10px)}}html.service-landing-text .service-page__intro>*{animation:service-landing-rise .56s cubic-bezier(.22,.8,.2,1) both}html.service-landing-text .service-page__intro>:nth-child(2){animation-delay:.06s}html.service-landing-text .service-page__intro>:nth-child(3){animation-delay:.12s}html.service-landing-text .service-page__intro>:nth-child(4){animation-delay:.18s}html.service-landing-text .service-page__intro>:nth-child(n+5){animation-delay:.24s}";
+    const rise = (n, delay) => "html.service-landing-text " + intro + ">:nth-child(" + n + "){animation-delay:" + delay + "s}";
+    hide.textContent = "html.service-landing " + photo + "{opacity:0}@keyframes service-landing-rise{from{opacity:0;transform:translateY(10px)}}html.service-landing-text " + intro + ">*{animation:service-landing-rise .56s cubic-bezier(.22,.8,.2,1) both}" + rise(2, 0.06) + rise(3, 0.12) + rise(4, 0.18) + rise("n+5", 0.24);
     document.head.append(hide);
     root.classList.add("service-landing", "service-landing-text");
     const oval = document.createElement("div");
@@ -80,7 +84,7 @@
     const image = document.createElement("img");
     image.alt = "";
     image.src = mark.src;
-    image.style.cssText = "display:block;width:100%;height:100%;object-fit:cover";
+    image.style.cssText = "display:block;width:100%;height:100%;object-fit:cover;object-position:" + (mark.pos || "50% 50%");
     oval.append(image);
     root.append(oval);
     const finish = () => {
@@ -103,11 +107,13 @@
         { left: `${mark.x}px`, top: `${mark.y}px`, width: `${mark.w}px`, height: `${mark.h}px`, borderRadius: mark.radius, boxShadow: "0 18px 50px rgba(40,44,32,.16)" },
         { left: `${box.left}px`, top: `${box.top}px`, width: `${box.width}px`, height: `${box.height}px`, borderRadius: radius, boxShadow: "0 0 0 rgba(40,44,32,0)" }
       ], { duration: 700, easing: "cubic-bezier(.6,0,.2,1)", fill: "forwards" });
+      const to = getComputedStyle(target).objectPosition;
+      if (to && mark.pos && to !== mark.pos) image.animate([{ objectPosition: mark.pos }, { objectPosition: to }], { duration: 700, easing: "cubic-bezier(.6,0,.2,1)", fill: "forwards" });
       flight.onfinish = finish;
     };
     let tries = 0;
     const look = () => {
-      const target = document.querySelector(".service-page__oval-inner img");
+      const target = document.querySelector(photo);
       if (target) fly(target);
       else if (++tries < 90) requestAnimationFrame(look);
       else finish();
