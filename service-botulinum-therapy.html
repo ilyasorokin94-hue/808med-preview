@@ -57,7 +57,7 @@
         .faq__tabs { display: none !important; }
       </style>
     </noscript>
-    <script type="module" crossorigin src="./assets/index-DWa39yrC.js"></script>
+    <script type="module" crossorigin src="./assets/index-V0lyzr_k.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CXDNaRex.css">
     <!--page-transition:start-->
     <script type="speculationrules">{"prefetch":[{"source":"document","where":{"or":[{"href_matches":"*service-*"},{"href_matches":"*doctor-*"}]},"eagerness":"moderate"}]}</script>
@@ -76,6 +76,16 @@
     const hide = document.createElement("style");
     const rise = (n, delay) => "html.service-landing-text " + intro + ">:nth-child(" + n + "){animation-delay:" + delay + "s}";
     const frame = doctor ? "html.service-landing-frame .doctor-page__card{opacity:0}html.service-landing-text .doctor-page__card{transition:opacity .3s ease}" : "";
+    if (mark.rise) {
+      hide.textContent = "@keyframes service-photo-rise{from{opacity:0;transform:scale(.94)}}html.service-landing-rise " + photo + "{animation:service-photo-rise .7s cubic-bezier(.22,.8,.2,1) both}@keyframes service-landing-rise{from{opacity:0;transform:translateY(10px)}}html.service-landing-rise " + intro + ">*{animation:service-landing-rise .56s cubic-bezier(.22,.8,.2,1) both}" + [2, 3, 4, "n+5"].map((n, i) => "html.service-landing-rise " + intro + ">:nth-child(" + n + "){animation-delay:" + (i + 1) * 0.06 + "s}").join("");
+      document.head.append(hide);
+      root.classList.add("service-landing-rise");
+      setTimeout(() => {
+        root.classList.remove("service-landing-rise");
+        hide.remove();
+      }, 1e3);
+      return;
+    }
     hide.textContent = frame + "html.service-landing " + photo + "{opacity:0}@keyframes service-landing-rise{from{opacity:0;transform:translateY(10px)}}html.service-landing-text " + intro + ">*{animation:service-landing-rise .56s cubic-bezier(.22,.8,.2,1) both}" + rise(2, 0.06) + rise(3, 0.12) + rise(4, 0.18) + rise("n+5", 0.24);
     document.head.append(hide);
     root.classList.add("service-landing", "service-landing-text");
