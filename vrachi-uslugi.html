@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Врачи: варианты блока услуг</title>
+<style>
+@font-face { font-family: "Literata"; src: url("./fonts/literata-808-v1.woff2") format("woff2"); font-weight: 400 500; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("./fonts/inter-cyrillic-v20.woff2") format("woff2"); font-weight: 400 600; unicode-range: U+0400-045F, U+2116; }
+@font-face { font-family: "Inter"; src: url("./fonts/inter-latin-v20.woff2") format("woff2"); font-weight: 400 600; }
+@font-face { font-family: "Inter"; src: url("./fonts/inter-ruble-v20.woff2") format("woff2"); unicode-range: U+20BD; }
+:root {
+  --ink: #172420; --text: #3d4138; --muted: #6c7063; --olive: #5e6d4f; --olive-dark: #46523f;
+  --plate: #aab38c; --wash: #e9ecdb; --line: rgba(119, 130, 100, .24); --paper: #fffdf3;
+  --oval: 47% 48% 42% 44% / 48% 47% 44% 43%;
+  --head: "Literata", "Times New Roman", serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #f8f6ed; color: var(--text); font: 16px/1.55 "Inter", Arial, sans-serif; }
+a { color: inherit; }
+.page { max-width: 1100px; margin: 0 auto; padding: 40px 16px 80px; }
+.intro h1 { margin: 0 0 10px; color: var(--ink); font: 400 clamp(30px, 4vw, 44px)/1.1 var(--head); letter-spacing: -.02em; }
+.intro p { max-width: 70ch; margin: 0 0 10px; }
+.variant { margin-top: 56px; }
+.variant > header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; padding: 14px 18px; border-radius: 16px; background: #26362f; color: #fffbe1; }
+.variant > header b { font: 500 20px/1.2 var(--head); }
+.variant > header span { color: #d9dcc6; font-size: 14.5px; }
+.who { margin: 22px 0 0; color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+.row { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 40px; padding-block: 30px; border-top: 1px solid var(--line); }
+.row h2 { margin: 0; color: var(--ink); font: 400 26px/1.15 var(--head); letter-spacing: -.02em; }
+.row .sub { margin: 6px 0 0; color: var(--muted); font-size: 14.5px; line-height: 1.45; }
+@media (max-width: 760px) { .row { grid-template-columns: minmax(0, 1fr); gap: 14px; padding-block: 24px; } }
+
+/* shared pieces of the site */
+.pills { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.pills a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 20px; border: 1px solid rgba(94, 109, 79, .45); border-radius: 999px; color: var(--olive-dark); font-weight: 500; text-decoration: none; }
+.pills a:hover { background: var(--wash); }
+.pills--small a { min-height: 40px; padding: 6px 16px; font-size: 15px; font-weight: 400; }
+.label { margin: 18px 0 10px; color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+.label:first-child { margin-top: 0; }
+.note { margin: 10px 0 0; color: var(--muted); font-size: 15px; }
+.more { display: inline-flex; align-items: center; min-height: 38px; padding: 8px 18px; border: 1px solid rgba(70, 82, 63, .38); border-radius: 999px; color: #46523f; font-size: 14.5px; font-weight: 500; text-decoration: none; white-space: nowrap; }
+
+/* 3 · list with lines */
+.list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.list li { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.list b { display: block; color: var(--ink); font: 400 21px/1.2 var(--head); letter-spacing: -.01em; }
+.list small { display: block; margin-top: 3px; color: var(--muted); font-size: 14.5px; }
+
+/* 4 · direction card with photo */
+.card { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px; align-items: center; padding: 18px 22px 18px 18px; border-radius: 26px; background: var(--paper); box-shadow: 0 1px 0 var(--line); }
+.card img { display: block; width: 150px; aspect-ratio: 1 / .78; object-fit: cover; border-radius: var(--oval); }
+.card b { display: block; color: var(--ink); font: 400 26px/1.1 var(--head); letter-spacing: -.02em; }
+.card p { margin: 6px 0 12px; color: var(--muted); font-size: 15px; }
+.card .foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+.card .price { color: var(--olive-dark); font-weight: 500; }
+.card .price small { color: var(--muted); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+@media (max-width: 560px) { .card { grid-template-columns: minmax(0, 1fr); } .card img { width: 100%; aspect-ratio: 16 / 9; border-radius: 18px; } }
+
+/* 5 · two columns with olive dots */
+.dots { columns: 2 240px; column-gap: 34px; margin: 0; padding: 0; list-style: none; }
+.dots li { position: relative; break-inside: avoid; padding: 7px 0 7px 20px; }
+.dots li::before { position: absolute; left: 0; top: 16px; width: 8px; height: 8px; border-radius: 50%; background: #778264; content: ""; }
+.dots a { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(70, 82, 63, .35); text-underline-offset: 4px; }
+.dots .main a { font: 400 21px/1.2 var(--head); text-decoration: none; }
+.dots .main::before { top: 14px; width: 10px; height: 10px; }
+
+/* 6 · text */
+.lead { margin: 0; color: var(--ink); font: 400 21px/1.45 var(--head); letter-spacing: -.01em; }
+.lead a { color: var(--olive-dark); text-decoration: underline; text-decoration-color: rgba(70, 82, 63, .4); text-underline-offset: 4px; }
+.lead + .pills { margin-top: 16px; }
+
+/* now */
+.now .pills--small { margin-top: 12px; }
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="intro">
+    <h1>Врачи: блок «Услуги специалиста»</h1>
+    <p>Шесть вариантов на двух врачах: Казина (терапевт, назначает анализы) и Бояринцева (косметолог, 11 процедур). Сверху для сравнения то, что на сайте сейчас. Названия и цены настоящие, все ссылки ведут на страницы сайта.</p>
+  </div>
+
+  <!-- NOW -->
+  <section class="variant now">
+    <header><b>Сейчас на сайте</b><span>заголовок в единственном числе, анализы выглядят как услуги врача, ряды без подписей</span></header>
+    <p class="who">Казина Екатерина Владимировна</p>
+    <div class="row"><h2>Услуга специалиста</h2><div>
+      <ul class="pills"><li><a href="service-therapy.html">Терапия</a></li></ul>
+      <ul class="pills pills--small"><li><a href="service-ferritin.html">Анализ на ферритин</a></li><li><a href="service-vitamin-tests.html">Анализы на витамины</a></li><li><a href="service-blood-test.html">Общий анализ крови</a></li><li><a href="service-biochemistry.html">Биохимический анализ крови</a></li><li><a href="service-hormone-tests.html">Анализы на гормоны</a></li><li><a href="service-checkup.html">Чек-ап организма</a></li></ul>
+    </div></div>
+    <p class="who">Бояринцева Юлия Игоревна</p>
+    <div class="row"><h2>Услуга специалиста</h2><div>
+      <ul class="pills"><li><a href="service-cosmetology.html">Косметология</a></li></ul>
+      <ul class="pills pills--small"><li><a href="service-biorevitalization.html">Биоревитализация</a></li><li><a href="service-contouring.html">Контурная пластика</a></li><li><a href="service-morpheus8.html">Morpheus 8</a></li><li><a href="service-photorejuvenation.html">Фотоомоложение</a></li><li><a href="service-botulinum-therapy.html">Ботулинотерапия</a></li><li><a href="service-mesotherapy.html">Мезотерапия</a></li><li><a href="service-peels.html">Пилинги</a></li><li><a href="service-collagen-therapy.html">Коллагенотерапия</a></li><li><a href="service-acne.html">Акне и постакне</a></li><li><a href="service-rosacea.html">Розацеа</a></li><li><a href="service-hyperhidrosis.html">Гипергидроз</a></li></ul>
+    </div></div>
+  </section>
+
+  <!-- 1 -->
+  <section class="variant">
+    <header><b>Вариант 1 · «С чем можно прийти», анализы одной кнопкой</b><span>мой совет: коротко, анализы не выдаются за услуги врача</span></header>
+    <p class="who">Казина Екатерина Владимировна</p>
+    <div class="row"><h2>С чем можно прийти</h2><div>
+      <p class="label">Направление</p>
+      <ul class="pills"><li><a href="service-therapy.html">Терапия</a></li><li><a href="service-checkup.html">Чек-ап организма</a></li></ul>
+      <p class="label">Назначает и разбирает анализы</p>
+      <ul class="pills pills--small"><li><a href="service-laboratory-diagnostics.html">Лабораторная диагностика</a></li></ul>
+    </div></div>
+    <p class="who">Бояринцева Юлия Игоревна</p>
+    <div class="row"><h2>С чем можно прийти</h2><div>
+      <p class="label">Направление</p>
+      <ul class="pills"><li><a href="service-cosmetology.html">Косметология</a></li></ul>
+      <p class="label">Процедуры</p>
+      <ul class="pills pills--small"><li><a href="service-biorevitalization.html">Биоревитализация</a></li><li><a href="service-contouring.html">Контурная пластика</a></li><li><a href="service-morpheus8.html">Morpheus 8</a></li><li><a href="service-photorejuvenation.html">Фотоомоложение</a></li><li><a href="service-botulinum-therapy.html">Ботулинотерапия</a></li><li><a href="service-mesotherapy.html">Мезотерапия</a></li><li><a href="service-peels.html">Пилинги</a></li><li><a href="service-collagen-therapy.html">Коллагенотерапия</a></li><li><a href="service-acne.html">Акне и постакне</a></li><li><a href="service-rosacea.html">Розацеа</a></li><li><a href="service-hyperhidrosis.html">Гипергидроз</a></li></ul>
+    </div></div>
+  </section>
+
+  <!-- 2 -->
+  <section class="variant">
+    <header><b>Вариант 2 · Все кнопки, но с подписями групп</b><span>ничего не убираем, только объясняем ряды</span></header>
+    <p class="who">Казина Екатерина Владимировна</p>
+    <div class="row"><h2>Услуги специалиста</h2><div>
+      <p class="label">Ведёт приём</p>
+      <ul class="pills"><li><a href="service-therapy.html">Терапия</a></li><li><a href="service-checkup.html">Чек-ап организма</a></li></ul>
+      <p class="label">Назначает и расшифровывает анализы</p>
+      <ul class="pills pills--small"><li><a href="service-ferritin.html">Анализ на ферритин</a></li><li><a href="service-vitamin-tests.html">Анализы на витамины</a></li><li><a href="service-blood-test.html">Общий анализ крови</a></li><li><a href="service-biochemistry.html">Биохимический анализ крови</a></li><li><a href="service-hormone-tests.html">Анализы на гормоны</a></li></ul>
+    </div></div>
+    <p class="who">Бояринцева Юлия Игоревна</p>
+    <div class="row"><h2>Услуги специалиста</h2><div>
+      <p class="label">Ведёт приём</p>
+      <ul class="pills"><li><a href="service-cosmetology.html">Косметология</a></li></ul>
+      <p class="label">Проводит процедуры</p>
+      <ul class="pills pills--small"><li><a href="service-biorevitalization.html">Биоревитализация</a></li><li><a href="service-contouring.html">Контурная пластика</a></li><li><a href="service-morpheus8.html">Morpheus 8</a></li><li><a href="service-photorejuvenation.html">Фотоомоложение</a></li><li><a href="service-botulinum-therapy.html">Ботулинотерапия</a></li><li><a href="service-mesotherapy.html">Мезотерапия</a></li><li><a href="service-peels.html">Пилинги</a></li><li><a href="service-collagen-therapy.html">Коллагенотерапия</a></li></ul>
+      <p class="label">Лечит</p>
+      <ul class="pills pills--small"><li><a href="service-acne.html">Акне и постакне</a></li><li><a href="service-rosacea.html">Розацеа</a></li><li><a href="service-hyperhidrosis.html">Гипергидроз</a></li></ul>
+    </div></div>
+  </section>
+
+  <!-- 3 -->
+  <section class="variant">
+    <header><b>Вариант 3 · Список строк с пояснением и «Подробнее»</b><span>как ссылки на страницах услуг: строка, одна фраза, кнопка справа</span></header>
+    <p class="who">Казина Екатерина Владимировна</p>
+    <div class="row"><h2>С чем можно прийти</h2><div>
+      <ul class="list">
+        <li><div><b>Терапия</b><small>Приём терапевта: жалобы, анализы, план лечения. 5 000 ₽</small></div><a class="more" href="service-therapy.html">Подробнее</a></li>
+        <li><div><b>Чек-ап организма</b><small>План обследования под ваш возраст и риски</small></div><a class="more" href="service-checkup.html">Подробнее</a></li>
+        <li><div><b>Анализы</b><small>Назначает нужные анализы и разбирает результаты</small></div><a class="more" href="service-laboratory-diagnostics.html">Подробнее</a></li>
+      </ul>
+    </div></div>
+    <p class="who">Бояринцева Юлия Игоревна</p>
+    <div class="row"><h2>С чем можно прийти</h2><div>
+      <ul class="list">
+        <li><div><b>Косметология</b><small>Приём врача-косметолога: осмотр кожи и план ухода. 3 500 ₽</small></div><a class="more" href="service-cosmetology.html">Подробнее</a></li>
+        <li><div><b>Акне, розацеа, гипергидроз</b><small>Лечение кожи у врача-дерматовенеролога</small></div><a class="more" href="service-acne.html">Подробнее</a></li>
+        <li><div><b>Инъекции</b><small>Биоревитализация, контурная пластика, ботулинотерапия, мезотерапия, коллаген</small></div><a class="more" href="service-biorevitalization.html">Подробнее</a></li>
+        <li><div><b>Аппаратные процедуры и пилинги</b><small>Morpheus 8, фотоомоложение, пилинги</small></div><a class="more" href="service-morpheus8.html">Подробнее</a></li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 4 -->
+  <section class="variant">
+    <header><b>Вариант 4 · Карточка направления с фото, процедуры кнопками ниже</b><span>как карточки процедур на страницах услуг; фото те же, что в «Услугах»</span></header>
+    <p class="who">Казина Екатерина Владимировна</p>
+    <div class="row"><h2>С чем можно прийти</h2><div>
+      <div class="card"><img src="images/services/service-therapy-1120w.webp" alt=""><div><b>Терапия</b><p>Приём терапевта: жалобы, анализы, план обследования и лечения.</p><div class="foot"><span class="price"><small>Приём</small> 5 000 ₽</span><a class="more" href="service-therapy.html">Подробнее</a></div></div></div>
+      <p class="label">Также</p>
+      <ul class="pills pills--small"><li><a href="service-checkup.html">Чек-ап организма</a></li><li><a href="service-laboratory-diagnostics.html">Назначает и разбирает анализы</a></li></ul>
+    </div></div>
+    <p class="who">Бояринцева Юлия Игоревна</p>
+    <div class="row"><h2>С чем можно прийти</h2><div>
+      <div class="card"><img src="images/services/service-cosmetology-1106w.webp" alt=""><div><b>Косметология</b><p>Осмотр кожи, план ухода и процедур, лечение акне и розацеа.</p><div class="foot"><span class="price"><small>Приём</small> 3 500 ₽</span><a class="more" href="service-cosmetology.html">Подробнее</a></div></div></div>
+      <p class="label">Процедуры</p>
+      <ul class="pills pills--small"><li><a href="service-biorevitalization.html">Биоревитализация</a></li><li><a href="service-contouring.html">Контурная пластика</a></li><li><a href="service-morpheus8.html">Morpheus 8</a></li><li><a href="service-photorejuvenation.html">Фотоомоложение</a></li><li><a href="service-botulinum-therapy.html">Ботулинотерапия</a></li><li><a href="service-mesotherapy.html">Мезотерапия</a></li><li><a href="service-peels.html">Пилинги</a></li><li><a href="service-collagen-therapy.html">Коллагенотерапия</a></li><li><a href="service-acne.html">Акне и постакне</a></li><li><a href="service-rosacea.html">Розацеа</a></li><li><a href="service-hyperhidrosis.html">Гипергидроз</a></li></ul>
+    </div></div>
+  </section>
+
+  <!-- 5 -->
+  <section class="variant">
+    <header><b>Вариант 5 · Спокойный список в две колонки с оливковыми точками</b><span>без кнопок, как текст; точки как в «Услугах» и «Подходе»</span></header>
+    <p class="who">Казина Екатерина Владимировна</p>
+    <div class="row"><h2>Направления и процедуры</h2><div>
+      <ul class="dots">
+        <li class="main"><a href="service-therapy.html">Терапия</a></li>
+        <li class="main"><a href="service-checkup.html">Чек-ап организма</a></li>
+        <li><a href="service-laboratory-diagnostics.html">Анализы: назначает и разбирает</a></li>
+      </ul>
+    </div></div>
+    <p class="who">Бояринцева Юлия Игоревна</p>
+    <div class="row"><h2>Направления и процедуры</h2><div>
+      <ul class="dots">
+        <li class="main"><a href="service-cosmetology.html">Косметология</a></li>
+        <li><a href="service-biorevitalization.html">Биоревитализация</a></li><li><a href="service-contouring.html">Контурная пластика</a></li><li><a href="service-morpheus8.html">Morpheus 8</a></li><li><a href="service-photorejuvenation.html">Фотоомоложение</a></li><li><a href="service-botulinum-therapy.html">Ботулинотерапия</a></li><li><a href="service-mesotherapy.html">Мезотерапия</a></li><li><a href="service-peels.html">Пилинги</a></li><li><a href="service-collagen-therapy.html">Коллагенотерапия</a></li><li><a href="service-acne.html">Акне и постакне</a></li><li><a href="service-rosacea.html">Розацеа</a></li><li><a href="service-hyperhidrosis.html">Гипергидроз</a></li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 6 -->
+  <section class="variant">
+    <header><b>Вариант 6 · Одной фразой, ссылки внутри текста</b><span>самый короткий: человек читает, а не выбирает из кнопок</span></header>
+    <p class="who">Казина Екатерина Владимировна</p>
+    <div class="row"><h2>С чем можно прийти</h2><div>
+      <p class="lead">Ведёт приём по <a href="service-therapy.html">терапии</a>, проводит <a href="service-checkup.html">чек-ап</a>, назначает и разбирает <a href="service-laboratory-diagnostics.html">анализы</a>.</p>
+    </div></div>
+    <p class="who">Бояринцева Юлия Игоревна</p>
+    <div class="row"><h2>С чем можно прийти</h2><div>
+      <p class="lead">Ведёт приём по <a href="service-cosmetology.html">косметологии</a>, лечит <a href="service-acne.html">акне</a>, <a href="service-rosacea.html">розацеа</a> и <a href="service-hyperhidrosis.html">гипергидроз</a>, проводит процедуры:</p>
+      <ul class="pills pills--small"><li><a href="service-biorevitalization.html">Биоревитализация</a></li><li><a href="service-contouring.html">Контурная пластика</a></li><li><a href="service-morpheus8.html">Morpheus 8</a></li><li><a href="service-photorejuvenation.html">Фотоомоложение</a></li><li><a href="service-botulinum-therapy.html">Ботулинотерапия</a></li><li><a href="service-mesotherapy.html">Мезотерапия</a></li><li><a href="service-peels.html">Пилинги</a></li><li><a href="service-collagen-therapy.html">Коллагенотерапия</a></li></ul>
+    </div></div>
+  </section>
+</main>
+</body>
+</html>
